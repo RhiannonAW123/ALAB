@@ -11,6 +11,9 @@
 			<input type="text" id="email" v-model="email" />
 		</div>
 		
+    <label for="checkInStatus">Checked In:</label>
+    <input type="checkbox" id="checkInStatus" name="checkInStatus">
+
 		<input type="submit" value="Save" id="save"/>
 	</form>
 </template>
@@ -18,27 +21,27 @@
 <script>
 import { eventBus } from '@/main.js';
 
+
 export default {
 	name: 'booking-form',
 	data() {
 		return {
 			fullName: '',
 			email: '',
-			checkInStatus: ''
+			checkInStatus: false
 		
 		}
 	},
 
 methods: {
 	handleSubmit() {
-		const payload = {
-			fullName: this.fullName,
+		const booking = {
+			name: this.fullName,
 			email: this.email,
-		};
-
-		eventBus.$emit('added-booking', payload);
-		this.fullName = '';
-		this.email ='';
+			checkInStatus: this.checkInStatus
+		}
+	
+	eventBus.$emit('addBooking', booking)
 	}
 
 }

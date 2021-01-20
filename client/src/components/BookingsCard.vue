@@ -3,7 +3,7 @@
     <h3>{{ booking.name }}</h3>
     <p>email: {{ booking.email }}</p>
     <p>checkInStatus: {{ booking.checkInStatus }}</p>
-    <!-- <button v-on:click="handleDelete(booking._id)">Delete Booking</button> -->
+    <button v-on:click="handleDelete">Delete Booking</button>
 </div>
 </template>
 
@@ -14,9 +14,9 @@ export default {
     name: 'bookings-card',
     props: ['booking'],
     methods: {
-    // handleDelete(id) {
-    //   eventBus.$emit('delete-booking', id);
-    // }
+    handleDelete: function() {
+      eventBus.$emit('delete-booking', this.booking._id);
+    }
     }
 }
 </script>

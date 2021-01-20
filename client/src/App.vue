@@ -28,13 +28,13 @@ export default {
   mounted() {
     this.fetchBookings();
 
-    eventBus.$on('added-booking', payload => {
-      BookingService.postBookings(payload)
+    eventBus.$on('addBooking', payload => {
+      BookingsService.postBooking(payload)
       .then(booking => this.bookings.push(booking));
     });
 
-    eventBus.$on('delete-booking', id => {
-      BookingService.deleteBooking(id)
+    eventBus.$on('delete-booking', (id) => {
+      BookingsService.deleteBooking(id)
       .then(() => {
         const index = this.bookings.findIndex(booking => booking._id === id );
         this.bookings.splice(index, 1);

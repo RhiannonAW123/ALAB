@@ -1,6 +1,7 @@
 <template lang='html'>
     <div id="bookingsGrid">         
     <bookings-card v-for="(booking, index) in bookings" :key="index" :booking="booking" />
+    
     </div>
 </template>
 
@@ -10,7 +11,7 @@ import BookingsCard from './BookingsCard';
 export default {
     name: 'bookings-grid',
     components: {
-        'bookings': Bookings
+        'bookings-card': BookingsCard,
     },
     props: ['bookings']
 

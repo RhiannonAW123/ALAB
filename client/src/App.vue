@@ -1,46 +1,15 @@
 <template>
-  <div>
-    <div class='Img'>
-  <div style="background-image: url('https://cdn.mos.cms.futurecdn.net/hrBSCFbPcR5iTFxHFoJKXN.jpg')"></div>
+  <div id='app'>
+   hello world 
+ <bookings-grid v-bind:bookings="bookings"> </bookings-grid>
+ <booking-form> </booking-form>
+</div>
   
-</div>
-<header>
-  <div>
-    <h1>
-      Milannon
-    </h1>
-    <p>
-      Where comfort meets style
-    </p>
-    
-  </div>
-  <nav role='navigation'>
-    <ul>
-      <li>
-        <a class='active' href='#'>Something</a>
-      </li>
-      <li>
-        <a href='#'>Something</a>
-      </li>
-      <li>
-        <a href='#'>Something</a>
-      </li>
-      <li>
-        <a href='#'>Something</a>
-      </li>
-    </ul>
-  </nav>
-</header>
-<div id='app'>
-      <bookings-form></bookings-form>
-    <bookings-grid></bookings-grid>
-</div>
-  </div>
 </template>
 
 <script>
 import { eventBus } from './main.js';
-import BookingsForm from '@/components/BookingsForm';
+import BookingForm from '@/components/BookingForm';
 import BookingsGrid from '@/components/BookingsGrid';
 import BookingsService from './services/BookingsService';
 
@@ -48,7 +17,7 @@ import BookingsService from './services/BookingsService';
 export default {
   name: 'app',
   components: {
-    'bookings-form': BookingsForm,
+    'booking-form': BookingForm,
     'bookings-grid': BookingsGrid
   },
   data() {
@@ -75,7 +44,7 @@ export default {
   methods: {
     fetchBookings() {
       BookingsService.getBookings()
-      .then(bookings => this.bookings - bookings);
+      .then(bookings => this.bookings = bookings);
     }
   }
 }

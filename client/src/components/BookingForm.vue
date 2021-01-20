@@ -19,7 +19,7 @@
 import { eventBus } from '@/main.js';
 
 export default {
-	name: 'bookings-form',
+	name: 'booking-form',
 	data() {
 		return {
 			fullName: '',

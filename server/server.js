@@ -9,16 +9,22 @@ app.use(parser.json());
 app.use(cors());
 
 
-MongoClient.connect('mongodb://localhost:27017')
-  .then((client) => {
-    const db = client.db('hotel');
-    const bookingsCollection = db.collection('bookings');
-    app.use('/api/bookings', createRouter(bookingsCollection));
-  })
-  .catch(console.error);
-app.listen(3000, function() {
-  console.log(`Hotel server running on port ${this.address().port}`);
-});
+MongoClient.connect('mongodb://localhost:27017', (err, client) => {
+  if (err) {
+    console.log(err)
+  }  
+  const db = client.db('hotel');
+  const bookingsCollection = db.collection('bookings');
+  app.use('/api/bookings', createRouter(bookingsCollection));
+
+  app.listen(3000, function() {
+    console.log(`Hotel server running on port ${this.address().port}`);
+  });
+
+}) 
+  
+    
+ 
 
 // MongoClient.connect('mongodb://localhost:27017')
 //   .then((client) => {
